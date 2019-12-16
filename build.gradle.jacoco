@@ -1,11 +1,26 @@
 apply plugin: 'java'
+apply plugin: 'org.sonarqube'
+apply plugin: 'jacoco'
 apply plugin: 'eclipse'
 apply plugin: 'maven'
 
-sourceCompatibility = '1.8'
-targetCompatibility = '1.8'
+sourceCompatibility = '1.7'
+targetCompatibility = '1.7'
 
 version = '0.0.1'
+
+//./gradlew sonarqube
+sonarqube {
+    properties {
+        property "sonar.projectName", "Java :: Utility Project :: Image Utility"
+        property "sonar.projectKey", "$project.group:$project.name"
+        property "sonar.language", "java"
+        property "sonar.sources", "src"
+        property "sonar.sourceEncoding", "UTF-8"
+        property "sonar.junit.reportsPath", "${project.buildDir}/test-results"
+        property "sonar.jacoco.reportPath", "${project.buildDir}/jacoco/test.exec"
+    }
+}
 
 buildscript {
 	repositories { 
@@ -48,7 +63,7 @@ configure(install.repositories.mavenInstaller) {
     pom.project {
 		group = 'io.utility'
 		artifactId 'image'
-        inceptionYear '2017'
+        inceptionYear '2016'
         packaging 'jar'
         licenses {
             license {
