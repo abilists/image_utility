@@ -28,10 +28,9 @@ compile 'io.utility:image:0.0.1'
 #### Get started
 Add the following code into the Model class.
 ```
-		File file = new File("/home/user/img/");
-		BufferedImage resizeImagePng = ImgUtility.resizeImage64(pngimageData.toString(), 200, 200);
-		// Make small image
-		ImageIO.write(resizeImagePng, "png", file);
+File file = new File("/home/user/img/");
+BufferedImage resizeImagePng = ImgUtility.resizeImage64(pngimageData.toString(), 200, 200);
+ImageIO.write(resizeImagePng, "png", file);
 ```
 
 #### License
