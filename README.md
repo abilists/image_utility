@@ -26,7 +26,7 @@ Add the following code into build.gradle in your new project.
 compile 'io.utility:image:0.0.1'
 ```
 #### Get started
-Add the following code into the Model class.
+Add the following code into your business class.
 ```
 File file = new File("/home/user/img/");
 BufferedImage resizeImagePng = ImgUtility.resizeImage64(pngimageData.toString(), 200, 200);
