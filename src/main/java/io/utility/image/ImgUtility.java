@@ -43,4 +43,13 @@ public class ImgUtility {
 		return ImgUtility.resizeImage(originalImage, type, width, height);
     }
 
+    public static BufferedImage resizeImageByte(byte[] pngimageByte, int width, int height) throws IOException {
+
+		byte[] imgBytesAsString = Base64.getDecoder().decode(pngimageByte);
+		BufferedImage originalImage = ImageIO.read(new ByteArrayInputStream(imgBytesAsString));
+		// Image type
+		int type = originalImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
+		return ImgUtility.resizeImage(originalImage, type, width, height);
+    }
+
 }
