@@ -52,4 +52,51 @@ public class ImgUtility {
 		return ImgUtility.resizeImage(originalImage, type, width, height);
     }
 
+    public static BufferedImage resizeImageRatio(BufferedImage originalImage, int width, int height) {
+        int type = originalImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
+        return resizeImageRatio(originalImage, type, width, height);
+    }
+
+    public static BufferedImage resizeImageRatio(BufferedImage originalImage, int type, int width, int height){
+        int originalWidth = originalImage.getWidth();
+        int originalHeight = originalImage.getHeight();
+
+        double scaleWidth = (double) width / originalWidth;
+        double scaleHeight = (double) height / originalHeight;
+        double scale = Math.min(scaleWidth, scaleHeight);
+
+        int newWidth = (int) (originalWidth * scale);
+        int newHeight = (int) (originalHeight * scale);
+
+        return resizeImage(originalImage, type, newWidth, newHeight);
+    }
+
+    public static BufferedImage resizeImage64Ratio(String pngimageData, int width, int height) throws IOException {
+		String base64Img = pngimageData.toString().split(",")[1];
+		byte[] imgBytesAsString = Base64.getDecoder().decode(base64Img.getBytes());
+
+		BufferedImage originalImage = ImageIO.read(new ByteArrayInputStream(imgBytesAsString));
+
+		// Image type
+		int type = originalImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
+
+		return ImgUtility.resizeImageRatio(originalImage, type, width, height);
+    }
+
+    public static BufferedImage resizeImageRatio(BufferedImage originalImage, int type){
+    	return resizeImageRatio(originalImage, type, IMG_WIDTH, IMG_HEIGHT);
+    }
+
+    public static BufferedImage resizeImage64Ratio(String pngimageData) throws IOException {
+    	return resizeImage64Ratio(pngimageData, IMG_WIDTH, IMG_HEIGHT);
+    }
+
+    public static BufferedImage resizeImageByteRatio(byte[] pngimageByte, int width, int height) throws IOException {
+		byte[] imgBytesAsString = Base64.getDecoder().decode(pngimageByte);
+		BufferedImage originalImage = ImageIO.read(new ByteArrayInputStream(imgBytesAsString));
+		// Image type
+		int type = originalImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
+		return ImgUtility.resizeImageRatio(originalImage, type, width, height);
+    }
+
 }
