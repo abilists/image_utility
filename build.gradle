@@ -3,10 +3,6 @@ plugins {
     id 'maven-publish'
 }
 
-group = 'io.utility'
-archivesBaseName = 'image'
-version = '0.0.3'
-
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
 
